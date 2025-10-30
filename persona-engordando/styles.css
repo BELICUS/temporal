@@ -1,0 +1,518 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+}
+
+.scene {
+  position: relative;
+  width: 600px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+/* PERSONA */
+.person {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  animation: eating 8s ease-in-out forwards;
+}
+
+/* Cabeza */
+.head {
+  width: 80px;
+  height: 80px;
+  background: #ffd1a3;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto 10px;
+  animation: headGrow 8s ease-in-out forwards;
+}
+
+.eye {
+  width: 12px;
+  height: 12px;
+  background: #333;
+  border-radius: 50%;
+  position: absolute;
+  top: 30px;
+  animation: eyeStrain 8s ease-in-out forwards;
+}
+
+.eye.left {
+  left: 20px;
+}
+
+.eye.right {
+  right: 20px;
+}
+
+.mouth {
+  width: 30px;
+  height: 15px;
+  border: 3px solid #333;
+  border-top: none;
+  border-radius: 0 0 30px 30px;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: mouthEating 1s infinite;
+}
+
+/* Cuerpo */
+.body {
+  width: 100px;
+  height: 120px;
+  background: #4a90e2;
+  border-radius: 50px 50px 20px 20px;
+  margin: 0 auto;
+  position: relative;
+  animation: bodyGrow 8s ease-in-out forwards;
+}
+
+/* Brazos */
+.arm {
+  width: 30px;
+  height: 80px;
+  background: #ffd1a3;
+  border-radius: 15px;
+  position: absolute;
+  top: 90px;
+  animation: armGrow 8s ease-in-out forwards;
+}
+
+.arm.left {
+  left: -10px;
+  transform: rotate(-20deg);
+  animation: armGrow 8s ease-in-out forwards, armWave 1.5s infinite;
+}
+
+.arm.right {
+  right: -10px;
+  transform: rotate(20deg);
+  animation: armGrow 8s ease-in-out forwards;
+}
+
+/* Piernas */
+.leg {
+  width: 35px;
+  height: 90px;
+  background: #2c3e50;
+  border-radius: 0 0 15px 15px;
+  position: absolute;
+  bottom: -90px;
+  animation: legGrow 8s ease-in-out forwards;
+}
+
+.leg.left {
+  left: 20px;
+}
+
+.leg.right {
+  right: 20px;
+}
+
+/* COMIDA */
+.food {
+  position: absolute;
+  left: 100px;
+  bottom: 150px;
+  animation: foodMove 8s ease-in-out forwards;
+}
+
+/* Hamburguesa */
+.burger {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.bun {
+  width: 60px;
+  height: 20px;
+  background: #d4a574;
+  border-radius: 30px 30px 0 0;
+  margin: 0 auto;
+}
+
+.bun.top {
+  background: #d4a574;
+  position: relative;
+}
+
+.bun.top::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #f4e4c1;
+  border-radius: 50%;
+  top: 5px;
+  left: 15px;
+  box-shadow: 15px 0 0 #f4e4c1, 25px 2px 0 #f4e4c1;
+}
+
+.patty {
+  width: 60px;
+  height: 12px;
+  background: #8b4513;
+  margin: 0 auto;
+}
+
+.cheese {
+  width: 60px;
+  height: 8px;
+  background: #ffd700;
+  margin: 0 auto;
+}
+
+.bun.bottom {
+  border-radius: 0 0 30px 30px;
+  background: #c49563;
+}
+
+/* Papas fritas */
+.fries {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.fry {
+  width: 8px;
+  height: 35px;
+  background: #f4d03f;
+  border-radius: 3px;
+}
+
+.fry:nth-child(2) {
+  height: 40px;
+}
+
+.fry:nth-child(3) {
+  height: 32px;
+}
+
+/* Gaseosa */
+.soda {
+  position: relative;
+  margin: 0 auto;
+  width: 40px;
+}
+
+.cup {
+  width: 40px;
+  height: 50px;
+  background: #e74c3c;
+  border-radius: 0 0 8px 8px;
+  position: relative;
+}
+
+.cup::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  background: rgba(255, 255, 255, 0.3);
+  top: 0;
+}
+
+.straw {
+  width: 4px;
+  height: 30px;
+  background: #fff;
+  position: absolute;
+  right: 10px;
+  top: -20px;
+  border-radius: 2px;
+}
+
+/* EXPLOSIÓN */
+.explosion {
+  position: absolute;
+  left: 50%;
+  bottom: 150px;
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: explosionAppear 0.5s 7.5s forwards;
+}
+
+.particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  animation: explode 1s 7.5s ease-out forwards;
+}
+
+.particle:nth-child(1) {
+  animation: explode1 1s 7.5s ease-out forwards;
+}
+
+.particle:nth-child(2) {
+  animation: explode2 1s 7.5s ease-out forwards;
+  background: #ffd93d;
+}
+
+.particle:nth-child(3) {
+  animation: explode3 1s 7.5s ease-out forwards;
+  background: #6bcf7f;
+}
+
+.particle:nth-child(4) {
+  animation: explode4 1s 7.5s ease-out forwards;
+  background: #4d96ff;
+}
+
+.particle:nth-child(5) {
+  animation: explode5 1s 7.5s ease-out forwards;
+  background: #ff6b9d;
+}
+
+.particle:nth-child(6) {
+  animation: explode6 1s 7.5s ease-out forwards;
+  background: #c44569;
+}
+
+.particle:nth-child(7) {
+  animation: explode7 1s 7.5s ease-out forwards;
+  background: #f8b500;
+}
+
+.particle:nth-child(8) {
+  animation: explode8 1s 7.5s ease-out forwards;
+  background: #786fa6;
+}
+
+/* ANIMACIONES */
+@keyframes bodyGrow {
+  0% {
+    width: 100px;
+    height: 120px;
+  }
+  30% {
+    width: 120px;
+    height: 130px;
+  }
+  60% {
+    width: 160px;
+    height: 150px;
+  }
+  90% {
+    width: 220px;
+    height: 180px;
+  }
+  95% {
+    width: 250px;
+    height: 200px;
+    background: #4a90e2;
+  }
+  100% {
+    width: 280px;
+    height: 220px;
+    background: #e74c3c;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes headGrow {
+  0% {
+    width: 80px;
+    height: 80px;
+  }
+  60% {
+    width: 100px;
+    height: 100px;
+  }
+  90% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@keyframes armGrow {
+  0% {
+    width: 30px;
+  }
+  90% {
+    width: 45px;
+  }
+  100% {
+    width: 50px;
+  }
+}
+
+@keyframes legGrow {
+  0% {
+    width: 35px;
+  }
+  90% {
+    width: 55px;
+  }
+  100% {
+    width: 65px;
+  }
+}
+
+@keyframes mouthEating {
+  0%,
+  100% {
+    height: 15px;
+  }
+  50% {
+    height: 25px;
+  }
+}
+
+@keyframes armWave {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(-40deg);
+  }
+}
+
+@keyframes eyeStrain {
+  0% {
+    width: 12px;
+    height: 12px;
+  }
+  90% {
+    width: 8px;
+    height: 8px;
+  }
+  95% {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@keyframes foodMove {
+  0% {
+    left: 100px;
+    opacity: 1;
+  }
+  80% {
+    left: 100px;
+    opacity: 1;
+  }
+  100% {
+    left: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes explosionAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes explode1 {
+  to {
+    transform: translate(-80px, -80px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode2 {
+  to {
+    transform: translate(80px, -80px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode3 {
+  to {
+    transform: translate(-80px, 80px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode4 {
+  to {
+    transform: translate(80px, 80px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode5 {
+  to {
+    transform: translate(-120px, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode6 {
+  to {
+    transform: translate(120px, 0) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode7 {
+  to {
+    transform: translate(0, -120px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes explode8 {
+  to {
+    transform: translate(0, 120px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes eating {
+  95% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Texto */
+.text {
+  margin-top: 30px;
+  font-size: 28px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: textPulse 2s infinite;
+}
+
+@keyframes textPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
